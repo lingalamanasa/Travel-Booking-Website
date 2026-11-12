@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly | Discover & Book Unforgettable Journeys</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-bell"></i> Special Spring Promo: Up to 35% off on select resort bookings! Use code <strong>SPRING35</strong></span>
+      </div>
+      <div class="top-bar-right">
+        <div class="top-item"><i class="fa-solid fa-phone"></i> +1 (800) 867-5309</div>
+        <div class="top-divider"></div>
+        <div class="top-item currency-picker">
+          <i class="fa-solid fa-globe"></i>
+          <select id="currencySelector" aria-label="Currency Selector">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="INR">INR (₹)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <header class="header" id="header">
+    <div class="container navbar-container">
+      <a href="#home" class="brand-logo" aria-label="Stackly Home">
+        <img src="images/stackly-logo.png" alt="Stackly" class="brand-logo-img">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#destinations" class="nav-link">Destinations</a></li>
+          <li class="nav-item"><a href="#hotels" class="nav-link">Hotels</a></li>
+          <li class="nav-item"><a href="#offers" class="nav-link">Offers</a></li>
+          <li class="nav-item"><a href="#why-us" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="#testimonials" class="nav-link">Reviews</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Action Buttons -->
+      <div class="nav-actions">
+        <!-- Wishlist Button -->
+        <button class="nav-action-btn wishlist-toggle-btn" id="wishlistOpenBtn" title="View Saved Hotels" aria-label="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge" id="wishlistCount">0</span>
+        </button>
+
+        <!-- User / Login Button -->
+        <div class="user-account-wrapper" id="userAuthContainer">
+          <button class="btn btn-outline-primary btn-sm login-btn" id="loginModalBtn">
+            <i class="fa-regular fa-user"></i>
+            <span class="login-text">Sign In</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="drawer-header">
+        <a href="#home" class="brand-logo" aria-label="Stackly Home">
+          <img src="images/stackly-logo.png" alt="Stackly" class="brand-logo-img">
+        </a>
+        <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="drawer-body">
+        <ul class="drawer-nav-list">
+          <li><a href="#home" class="drawer-nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="#destinations" class="drawer-nav-link"><i class="fa-solid fa-map-location-dot"></i> Destinations</a></li>
+          <li><a href="#hotels" class="drawer-nav-link"><i class="fa-solid fa-hotel"></i> Hotels</a></li>
+          <li><a href="#offers" class="drawer-nav-link"><i class="fa-solid fa-tags"></i> Special Offers</a></li>
+          <li><a href="#why-us" class="drawer-nav-link"><i class="fa-solid fa-shield-halved"></i> Why Choose Us</a></li>
+          <li><a href="#testimonials" class="drawer-nav-link"><i class="fa-solid fa-comments"></i> Customer Reviews</a></li>
+          <li><a href="#contact" class="drawer-nav-link"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="drawer-footer">
+          <button class="btn btn-primary w-100" id="drawerLoginBtn">
+            <i class="fa-regular fa-user"></i> Sign In / Register
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
+    <div class="hero-bg-overlay"></div>
+    <div class="container hero-container">
+      <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
+        <div class="hero-tag">
+          <i class="fa-solid fa-compass fa-spin" style="--fa-animation-duration: 15s;"></i>
+          <span>Explore The Unexplored World</span>
+        </div>
+        <h1 class="hero-title">
+          Book Dream Stays &amp; <span>Wander Freely</span> Across The Globe
+        </h1>
+        <p class="hero-subtitle">
+          Discover handpicked luxury hotels, coastal villas, and bespoke travel experiences with guaranteed best rates and 24/7 dedicated travel concierge.
+        </p>
+
+        <!-- Quick Stats Banner -->
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <span class="metric-num">50k+</span>
+            <span class="metric-label">Happy Travelers</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-num">1,200+</span>
+            <span class="metric-label">Luxury Hotels</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-num">99.4%</span>
+            <span class="metric-label">Satisfaction Rate</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Functional Search Form Card -->
+      <div class="search-form-card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+        <div class="search-tabs">
+          <button class="search-tab active" data-tab="hotels"><i class="fa-solid fa-bed"></i> Hotels &amp; Resorts</button>
+          <button class="search-tab" data-tab="flights"><i class="fa-solid fa-plane-departure"></i> Flight + Hotel</button>
+          <button class="search-tab" data-tab="experiences"><i class="fa-solid fa-mountain-sun"></i> Experiences</button>
+        </div>
+
+        <form id="heroSearchForm" class="hero-search-form" novalidate>
+          <!-- Destination Field -->
+          <div class="search-field destination-field">
+            <div class="field-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="field-inputs">
+              <label for="searchDestination">Destination</label>
+              <input type="text" id="searchDestination" placeholder="Where do you want to go?" autocomplete="off" required>
+            </div>
+            <!-- Autocomplete suggestions dropdown -->
+            <div class="suggestions-dropdown" id="destinationSuggestions"></div>
+          </div>
+
+          <!-- Check-In Date -->
+          <div class="search-field date-field">
+            <div class="field-icon"><i class="fa-regular fa-calendar-check"></i></div>
+            <div class="field-inputs">
+              <label for="checkInDate">Check-In</label>
+              <input type="date" id="checkInDate" required>
+            </div>
+          </div>
+
+          <!-- Check-Out Date -->
+          <div class="search-field date-field">
+            <div class="field-icon"><i class="fa-regular fa-calendar-xmark"></i></div>
+            <div class="field-inputs">
+              <label for="checkOutDate">Check-Out</label>
+              <input type="date" id="checkOutDate" required>
+            </div>
+          </div>
+
+          <!-- Guests & Rooms Selector -->
+          <div class="search-field guests-field" id="guestsDropdownTrigger">
+            <div class="field-icon"><i class="fa-solid fa-user-group"></i></div>
+            <div class="field-inputs">
+              <label>Guests &amp; Rooms</label>
+              <span class="guest-summary-text" id="guestSummaryText">2 Adults, 1 Room</span>
+            </div>
+            <i class="fa-solid fa-chevron-down field-caret"></i>
+
+            <!-- Guests Counter Popover -->
+            <div class="guest-popover" id="guestPopover">
+              <div class="guest-row">
+                <div class="guest-info">
+                  <span class="guest-type">Adults</span>
+                  <span class="guest-desc">Ages 18 or above</span>
+                </div>
+                <div class="counter-controls">
+                  <button type="button" class="btn-counter" data-action="decrease" data-target="adultsCount"><i class="fa-solid fa-minus"></i></button>
+                  <span id="adultsCount" class="counter-val">2</span>
+                  <button type="button" class="btn-counter" data-action="increase" data-target="adultsCount"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+
+              <div class="guest-row">
+                <div class="guest-info">
+                  <span class="guest-type">Children</span>
+                  <span class="guest-desc">Ages 0 to 17</span>
+                </div>
+                <div class="counter-controls">
+                  <button type="button" class="btn-counter" data-action="decrease" data-target="childrenCount"><i class="fa-solid fa-minus"></i></button>
+                  <span id="childrenCount" class="counter-val">0</span>
+                  <button type="button" class="btn-counter" data-action="increase" data-target="childrenCount"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+
+              <div class="guest-row">
+                <div class="guest-info">
+                  <span class="guest-type">Rooms</span>
+                  <span class="guest-desc">Number of rooms</span>
+                </div>
+                <div class="counter-controls">
+                  <button type="button" class="btn-counter" data-action="decrease" data-target="roomsCount"><i class="fa-solid fa-minus"></i></button>
+                  <span id="roomsCount" class="counter-val">1</span>
+                  <button type="button" class="btn-counter" data-action="increase" data-target="roomsCount"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+
+              <div class="popover-footer">
+                <button type="button" class="btn btn-sm btn-primary w-100" id="applyGuestsBtn">Apply</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="search-submit">
+            <button type="submit" class="btn btn-accent btn-search" id="heroSearchBtn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>Find Stays</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Search Error / Alert Banner -->
+        <div class="search-alert" id="searchAlert"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Destinations Section -->
+  <section class="section destinations-section" id="destinations">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-subtitle"><i class="fa-solid fa-earth-americas"></i> Curated Getaways</span>
+        <h2 class="section-title">Popular Worldwide Destinations</h2>
+        <p class="section-description">
+          From tranquil tropical atolls to historic cultural centers, explore our most coveted destinations recommended by world travelers.
+        </p>
+
+        <!-- Destination Filter Tags -->
+        <div class="filter-pills-wrapper" id="destinationFilterPills">
+          <button class="filter-pill active" data-category="all">All Places</button>
+          <button class="filter-pill" data-category="beach">Tropical &amp; Beach</button>
+          <button class="filter-pill" data-category="mountain">Mountains &amp; Alps</button>
+          <button class="filter-pill" data-category="city">Iconic Cities</button>
+          <button class="filter-pill" data-category="historic">Culture &amp; Heritage</button>
+        </div>
+      </div>
+
+      <!-- Destinations Grid -->
+      <div class="destinations-grid" id="destinationsGrid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Hotels & Resorts Section -->
+  <section class="section hotels-section" id="hotels">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-subtitle"><i class="fa-solid fa-crown"></i> Handpicked Accommodations</span>
+        <h2 class="section-title">Featured Luxury Hotels &amp; Resorts</h2>
+        <p class="section-description">
+          Experience world-class hospitality, private infinity pools, and five-star culinary delights at premier rates.
+        </p>
+      </div>
+
+      <!-- Hotel Controls & Filtering Bar -->
+      <div class="hotel-controls-bar" data-aos="fade-up" data-aos-delay="100">
+        <div class="controls-left">
+          <!-- Live Hotel Search -->
+          <div class="control-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="hotelKeywordInput" placeholder="Search hotel by name or city...">
+          </div>
+
+          <!-- Star Rating Filter -->
+          <div class="control-select">
+            <i class="fa-solid fa-star"></i>
+            <select id="hotelRatingFilter" aria-label="Filter by Star Rating">
+              <option value="all">All Star Ratings</option>
+              <option value="5">5 Stars Luxury</option>
+              <option value="4.5">4.5+ Stars &amp; Above</option>
+              <option value="4">4+ Stars &amp; Above</option>
+            </select>
+          </div>
+
+          <!-- Price Range Slider -->
+          <div class="control-price-range">
+            <div class="price-range-label">
+              <span>Max Price / Night:</span>
+              <strong id="priceRangeValue">$900</strong>
+            </div>
+            <input type="range" id="priceRangeInput" min="120" max="950" step="20" value="950">
+          </div>
+        </div>
+
+        <div class="controls-right">
+          <!-- Sorting Filter -->
+          <div class="control-sort">
+            <label for="hotelSortSelect">Sort by:</label>
+            <select id="hotelSortSelect" aria-label="Sort Hotels">
+              <option value="featured">Featured First</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+              <option value="reviews">Most Reviewed</option>
+            </select>
+          </div>
+
+          <!-- Reset Filter Button -->
+          <button class="btn btn-sm btn-outline-secondary" id="resetFiltersBtn" title="Reset all filters">
+            <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Hotel Results Meta -->
+      <div class="hotel-results-meta">
+        <span id="hotelCountDisplay">Showing 10 luxury hotels</span>
+        <div class="active-filter-tags" id="activeFilterTags"></div>
+      </div>
+
+      <!-- Hotel Cards Grid -->
+      <div class="hotels-grid" id="hotelsGrid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+
+      <!-- Empty State if no hotels match filters -->
+      <div class="no-results-state hidden" id="noHotelsFound">
+        <div class="empty-icon"><i class="fa-solid fa-hotel"></i></div>
+        <h3>No matching hotels found</h3>
+        <p>Try broadening your filters, increasing your max budget, or resetting search terms.</p>
+        <button class="btn btn-primary" id="emptyResetBtn">Reset All Filters</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Offers & Discounts Section -->
+  <section class="section offers-section" id="offers">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-subtitle"><i class="fa-solid fa-gift"></i> Limited Time Promotions</span>
+        <h2 class="section-title">Exclusive Deals &amp; Travel Coupons</h2>
+        <p class="section-description">
+          Unlock significant savings on your next luxury escape. Copy the verified promo codes below and apply at checkout.
+        </p>
+      </div>
+
+      <!-- Special Offers Grid -->
+      <div class="offers-grid" id="offersGrid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="section why-us-section" id="why-us">
+    <div class="container">
+      <div class="section-header text-center" data-aos="fade-up">
+        <span class="section-subtitle"><i class="fa-solid fa-award"></i> The Stackly Advantage</span>
+        <h2 class="section-title">Why 50,000+ Voyagers Travel With Us</h2>
+        <p class="section-description">
+          We combine cutting-edge booking technology with personalized hospitality concierge to deliver effortless travel every step of the way.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="50">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-tag"></i>
+          </div>
+          <h3 class="feature-title">Best Price Guarantee</h3>
+          <p class="feature-desc">
+            Found a lower rate elsewhere for the same stay? We'll match it and refund the difference plus give you a 10% credit bonus.
+          </p>
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i> Price Match Promise</div>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h3 class="feature-title">24/7 Global Concierge</h3>
+          <p class="feature-desc">
+            Round-the-clock multilingual human support via chat, phone, or email to assist with itineraries, check-in needs, and special requests.
+          </p>
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i> Instant Human Response</div>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-shield-virus"></i>
+          </div>
+          <h3 class="feature-title">100% Verified Stays</h3>
+          <p class="feature-desc">
+            Every hotel, villa, and boutique lodge is rigorously audited for cleanliness, premium amenities, safety, and authentic reviews.
+          </p>
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i> Zero Fake Listings</div>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="350">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h3 class="feature-title">Instant Secure Booking</h3>
+          <p class="feature-desc">
+            Seamless one-tap reservation with bank-grade 256-bit SSL encryption. Zero hidden fees and instant voucher delivery.
+          </p>
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i> 0% Hidden Surcharges</div>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="450">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </div>
+          <h3 class="feature-title">Flexible Free Cancellation</h3>
+          <p class="feature-desc">
+            Plans change unexpectedly. Enjoy complimentary cancellation and full refunds on thousands of participating hotels up to 24h before.
+          </p>
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i> Stress-Free Flexibility</div>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="550">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-gem"></i>
+          </div>
+          <h3 class="feature-title">VIP Perks &amp; Upgrades</h3>
+          <p class="feature-desc">
+            Complimentary room upgrades, free gourmet breakfast, late checkout, and luxury spa credits for our Stackly club members.
+          </p>
+          <div class="feature-check"><i class="fa-solid fa-circle-check"></i> Exclusive Privilege Access</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Testimonials Section -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-subtitle"><i class="fa-solid fa-heart"></i> Genuine Experiences</span>
+        <h2 class="section-title">Loved by Travelers Worldwide</h2>
+        <p class="section-description">
+          Read candid reviews from over 50,000 wanderers who booked their bucket-list holidays with Stackly.
+        </p>
+      </div>
+
+      <!-- Testimonial Slider Container -->
+      <div class="slider-wrapper" data-aos="fade-up" data-aos-delay="100">
+        <button class="slider-arrow slider-arrow-prev" id="sliderPrevBtn" aria-label="Previous Testimonial">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="testimonials-track-container" id="testimonialsTrackContainer">
+          <div class="testimonials-track" id="testimonialsTrack">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+
+        <button class="slider-arrow slider-arrow-next" id="sliderNextBtn" aria-label="Next Testimonial">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Slider Indicators -->
+      <div class="slider-dots" id="sliderDots">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Subscription Section -->
+  <section class="newsletter-section" id="contact">
+    <div class="container">
+      <div class="newsletter-card" data-aos="zoom-in" data-aos-duration="800">
+        <div class="newsletter-shape-1"></div>
+        <div class="newsletter-shape-2"></div>
+        <div class="newsletter-content">
+          <div class="newsletter-badge">
+            <i class="fa-solid fa-paper-plane"></i> Get VIP Travel Secret Deals
+          </div>
+          <h2 class="newsletter-title">Subscribe &amp; Get Up To <span>25% Off</span> Your First Voyage</h2>
+          <p class="newsletter-subtitle">
+            Join 120,000+ smart travelers. Receive exclusive flash sales, secret weekend getaway ideas, and curated travel guides directly to your inbox.
+          </p>
+
+          <form id="newsletterForm" class="newsletter-form" novalidate>
+            <div class="newsletter-input-group">
+              <i class="fa-regular fa-envelope input-icon"></i>
+              <input type="email" id="newsletterEmail" placeholder="Enter your best email address..." required>
+              <button type="submit" class="btn btn-accent btn-subscribe" id="newsletterSubmitBtn">
+                <span>Join Now</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+            <div class="form-feedback" id="newsletterFeedback"></div>
+          </form>
+
+          <div class="newsletter-perks">
+            <span><i class="fa-solid fa-lock"></i> We respect your privacy. No spam ever.</span>
+            <span><i class="fa-solid fa-rotate-left"></i> Unsubscribe at any time with 1 click.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Footer Section -->
+  <footer class="footer">
+    <div class="container footer-top">
+      <div class="footer-col brand-col">
+        <a href="#home" class="brand-logo footer-logo" aria-label="Stackly Home">
+          <img src="images/stackly-logo.png" alt="Stackly" class="brand-logo-img">
+        </a>
+        <p class="footer-bio">
+          Stackly is an award-winning luxury travel and hotel reservation platform dedicated to designing unforgettable stays and effortless worldwide exploration.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Top Destinations</h4>
+        <ul class="footer-links">
+          <li><a href="#destinations" class="dest-link" data-dest="Bali">Bali, Indonesia</a></li>
+          <li><a href="#destinations" class="dest-link" data-dest="Santorini">Santorini, Greece</a></li>
+          <li><a href="#destinations" class="dest-link" data-dest="Kyoto">Kyoto, Japan</a></li>
+          <li><a href="#destinations" class="dest-link" data-dest="Swiss Alps">Swiss Alps, Switzerland</a></li>
+          <li><a href="#destinations" class="dest-link" data-dest="Paris">Paris, France</a></li>
+          <li><a href="#destinations" class="dest-link" data-dest="Amalfi">Amalfi Coast, Italy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#destinations">Explore Destinations</a></li>
+          <li><a href="#hotels">Featured Luxury Hotels</a></li>
+          <li><a href="#offers">Special Offers &amp; Promo Codes</a></li>
+          <li><a href="#why-us">Why Choose Us</a></li>
+          <li><a href="#testimonials">Customer Reviews</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Help &amp; Support</h4>
+        <ul class="footer-links">
+          <li><a href="#">Help Center &amp; FAQs</a></li>
+          <li><a href="#">Cancellation Policies</a></li>
+          <li><a href="#">Price Match Guarantee</a></li>
+          <li><a href="#">Travel Advisory &amp; Safety</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col contact-col">
+        <h4 class="footer-title">Contact Support</h4>
+        <ul class="footer-contact-info">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>742 Evergreen Terrace, Suite 400, San Francisco, CA 94107</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <span>+1 (800) 867-5309 (Toll Free)</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <span>concierge@stackly.com</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-clock"></i>
+            <span>24/7 Global Travel Concierge</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <div class="copyright">
+          &copy; <span id="currentYear">2026</span> Stackly Inc. All rights reserved. Built with passion for world explorers.
+        </div>
+        <div class="payment-badges">
+          <span title="Visa"><i class="fa-brands fa-cc-visa"></i></span>
+          <span title="Mastercard"><i class="fa-brands fa-cc-mastercard"></i></span>
+          <span title="Amex"><i class="fa-brands fa-cc-amex"></i></span>
+          <span title="Apple Pay"><i class="fa-brands fa-cc-apple-pay"></i></span>
+          <span title="PayPal"><i class="fa-brands fa-paypal"></i></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollTopBtn" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ================= MODALS & DRAWERS ================= -->
+
+  <!-- Wishlist Drawer Modal -->
+  <div class="wishlist-drawer-backdrop" id="wishlistBackdrop"></div>
+  <aside class="wishlist-drawer" id="wishlistDrawer" aria-label="Wishlist Drawer">
+    <div class="drawer-top">
+      <div class="drawer-title-wrap">
+        <i class="fa-solid fa-heart text-danger"></i>
+        <h3>Saved Stays (<span id="wishlistDrawerCount">0</span>)</h3>
+      </div>
+      <button class="drawer-close" id="wishlistCloseBtn" aria-label="Close Wishlist">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="wishlist-items-container" id="wishlistItemsContainer">
+      <!-- Dynamically filled with saved hotels -->
+    </div>
+
+    <div class="wishlist-footer" id="wishlistFooter">
+      <button class="btn btn-outline-danger btn-sm" id="clearWishlistBtn">
+        <i class="fa-solid fa-trash-can"></i> Clear All Saved
+      </button>
+      <a href="#hotels" class="btn btn-primary btn-sm" id="wishlistBrowseBtn">
+        Browse More Stays
+      </a>
+    </div>
+  </aside>
+
+  <!-- Hotel Quick Booking Modal -->
+  <div class="modal-backdrop" id="bookingModalBackdrop">
+    <div class="booking-modal" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+      <button class="modal-close-btn" id="bookingModalCloseBtn" aria-label="Close Booking Modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="booking-modal-header">
+        <span class="booking-badge"><i class="fa-solid fa-sparkles"></i> Instant Confirmation</span>
+        <h3 id="bookingModalTitle">Book Your Stay</h3>
+        <p class="hotel-loc-sub" id="bookingModalHotelLocation"><i class="fa-solid fa-location-dot"></i> <span>Location</span></p>
+      </div>
+
+      <div class="booking-modal-body">
+        <div class="booking-hotel-preview">
+          <img id="bookingModalHotelImage" src="" alt="Hotel Preview">
+          <div class="preview-details">
+            <h4 id="bookingModalHotelName">Hotel Name</h4>
+            <div class="preview-rating" id="bookingModalHotelRating"></div>
+            <div class="preview-price-tag">
+              <span class="rate" id="bookingModalRate">$0</span> / night
+            </div>
+          </div>
+        </div>
+
+        <form id="bookingForm" class="booking-form" novalidate>
+          <div class="form-row dates-row">
+            <div class="form-group">
+              <label for="bookCheckIn">Check-In Date *</label>
+              <input type="date" id="bookCheckIn" required>
+            </div>
+            <div class="form-group">
+              <label for="bookCheckOut">Check-Out Date *</label>
+              <input type="date" id="bookCheckOut" required>
+            </div>
+          </div>
+
+          <div class="form-row guests-row">
+            <div class="form-group">
+              <label for="bookGuests">Guests</label>
+              <select id="bookGuests">
+                <option value="1">1 Adult</option>
+                <option value="2" selected>2 Adults</option>
+                <option value="3">3 Adults</option>
+                <option value="4">4 Adults / Family</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="bookRoomType">Room Category</label>
+              <select id="bookRoomType">
+                <option value="standard" data-multiplier="1.0">Deluxe King Room (Standard)</option>
+                <option value="ocean" data-multiplier="1.25">Ocean / Mountain View Suite (+25%)</option>
+                <option value="presidential" data-multiplier="1.6">Presidential VIP Suite (+60%)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row user-row">
+            <div class="form-group">
+              <label for="bookFullName">Full Name *</label>
+              <input type="text" id="bookFullName" placeholder="e.g. Eleanor Vance" required>
+            </div>
+            <div class="form-group">
+              <label for="bookEmail">Email Address *</label>
+              <input type="email" id="bookEmail" placeholder="e.g. eleanor@example.com" required>
+            </div>
+          </div>
+
+          <!-- Coupon Code Input in Modal -->
+          <div class="coupon-apply-group">
+            <label for="bookCouponCode">Have a coupon or discount code?</label>
+            <div class="coupon-input-wrap">
+              <input type="text" id="bookCouponCode" placeholder="Enter coupon code (e.g. SPRING35)">
+              <button type="button" class="btn btn-outline-primary" id="applyCouponBtn">Apply Code</button>
+            </div>
+            <div class="coupon-msg" id="couponFeedbackMsg"></div>
+          </div>
+
+          <!-- Dynamic Price Breakdown Calculation Box -->
+          <div class="price-breakdown-card">
+            <h4>Price Summary</h4>
+            <div class="breakdown-row">
+              <span id="breakdownNightsLabel">Rate ($0 × 1 night)</span>
+              <strong id="breakdownBasePrice">$0</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Taxes, Resort Fees &amp; VAT (12%)</span>
+              <strong id="breakdownTaxes">$0</strong>
+            </div>
+            <div class="breakdown-row discount-row hidden" id="breakdownDiscountRow">
+              <span>Promo Discount (<span id="breakdownDiscountPercent">0%</span>)</span>
+              <strong id="breakdownDiscountAmount">-$0</strong>
+            </div>
+            <div class="breakdown-divider"></div>
+            <div class="breakdown-row total-row">
+              <span>Estimated Total:</span>
+              <strong id="breakdownTotalPrice">$0</strong>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-accent w-100 btn-confirm-booking" id="confirmBookingBtn">
+            <i class="fa-solid fa-lock"></i> Confirm Reservation
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Confirmation Success Modal -->
+  <div class="modal-backdrop" id="successModalBackdrop">
+    <div class="success-modal" id="successModal">
+      <div class="success-icon-wrap">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h3>Booking Confirmed!</h3>
+      <p class="success-lead">Congratulations! Your dream vacation stay has been successfully reserved.</p>
+      
+      <div class="receipt-card" id="bookingReceipt">
+        <div class="receipt-row">
+          <span>Booking Reference:</span>
+          <strong id="receiptRef">VV-789421</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Hotel:</span>
+          <strong id="receiptHotel">Aura Resort</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Guest:</span>
+          <strong id="receiptGuest">John Doe</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Dates:</span>
+          <strong id="receiptDates">Nov 15 - Nov 20 (5 Nights)</strong>
+        </div>
+        <div class="receipt-row receipt-total">
+          <span>Total Paid:</span>
+          <strong id="receiptTotal">$1,450.00</strong>
+        </div>
+      </div>
+
+      <div class="success-actions">
+        <button class="btn btn-primary w-100" id="closeSuccessModalBtn">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign In / Register Auth Modal -->
+  <div class="modal-backdrop" id="authModalBackdrop">
+    <div class="auth-modal" id="authModal">
+      <button class="modal-close-btn" id="authCloseBtn" aria-label="Close Authentication Modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth-tab="signin">Sign In</button>
+        <button class="auth-tab" data-auth-tab="signup">Create Account</button>
+      </div>
+
+      <!-- Sign In Form -->
+      <form id="signInForm" class="auth-form" novalidate>
+        <div class="auth-header">
+          <h3>Welcome Back!</h3>
+          <p>Access your saved stays, VIP discounts, and bookings.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="loginEmail">Email Address</label>
+          <div class="input-with-icon">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="loginEmail" placeholder="name@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="loginPassword" placeholder="••••••••" required>
+          </div>
+        </div>
+
+        <div class="form-actions-row">
+          <label class="remember-label">
+            <input type="checkbox" id="rememberMe" checked> Remember me
+          </label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mt-3">Sign In</button>
+
+        <div class="auth-social-divider"><span>or sign in with</span></div>
+
+        <div class="social-login-grid">
+          <button type="button" class="btn-social" id="googleLoginBtn"><i class="fa-brands fa-google"></i> Google</button>
+          <button type="button" class="btn-social" id="appleLoginBtn"><i class="fa-brands fa-apple"></i> Apple</button>
+        </div>
+      </form>
+
+      <!-- Register Form -->
+      <form id="signUpForm" class="auth-form hidden" novalidate>
+        <div class="auth-header">
+          <h3>Join Stackly</h3>
+          <p>Unlock member rates and earn 5% cashback travel points.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="regName">Full Name</label>
+          <div class="input-with-icon">
+            <i class="fa-regular fa-user"></i>
+            <input type="text" id="regName" placeholder="Eleanor Vance" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regEmail">Email Address</label>
+          <div class="input-with-icon">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="regEmail" placeholder="eleanor@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="regPassword" placeholder="Create strong password" required>
+          </div>
+        </div>
+
+        <label class="terms-agree">
+          <input type="checkbox" id="agreeTerms" required>
+          I agree to the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a>.
+        </label>
+
+        <button type="submit" class="btn btn-accent w-100 mt-3">Create Free Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- AOS Animation Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- Main Application Script -->
+  <script src="js/app.js"></script>
+</body>
+</html>
+
