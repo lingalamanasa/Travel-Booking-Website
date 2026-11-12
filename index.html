@@ -19,7 +19,8 @@
   <!-- AOS (Animate On Scroll) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
   
-  <!-- Custom Stylesheet -->
+  <!-- Custom Stylesheet (supports both root and css/ folder) -->
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -50,7 +51,7 @@
   <header class="header" id="header">
     <div class="container navbar-container">
       <a href="#home" class="brand-logo" aria-label="Stackly Home">
-        <img src="images/stackly-logo.png" alt="Stackly" class="brand-logo-img">
+        <img src="stackly-logo.png" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src='images/stackly-logo.png';}" alt="Stackly" class="brand-logo-img">
       </a>
 
       <!-- Desktop Navigation Menu -->
@@ -95,7 +96,7 @@
     <div class="mobile-drawer" id="mobileDrawer">
       <div class="drawer-header">
         <a href="#home" class="brand-logo" aria-label="Stackly Home">
-          <img src="images/stackly-logo.png" alt="Stackly" class="brand-logo-img">
+          <img src="stackly-logo.png" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src='images/stackly-logo.png';}" alt="Stackly" class="brand-logo-img">
         </a>
         <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Menu">
           <i class="fa-solid fa-xmark"></i>
@@ -546,7 +547,7 @@
     <div class="container footer-top">
       <div class="footer-col brand-col">
         <a href="#home" class="brand-logo footer-logo" aria-label="Stackly Home">
-          <img src="images/stackly-logo.png" alt="Stackly" class="brand-logo-img">
+          <img src="stackly-logo.png" onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src='images/stackly-logo.png';}" alt="Stackly" class="brand-logo-img">
         </a>
         <p class="footer-bio">
           Stackly is an award-winning luxury travel and hotel reservation platform dedicated to designing unforgettable stays and effortless worldwide exploration.
@@ -913,8 +914,15 @@
 
   <!-- AOS Animation Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <!-- Main Application Script -->
-  <script src="js/app.js"></script>
+  <!-- Main Application Script (supports both root and js/ folder) -->
+  <script src="app.js"></script>
+  <script>
+    if (typeof HOTELS_DATA === 'undefined') {
+      var fb = document.createElement('script');
+      fb.src = 'js/app.js';
+      document.body.appendChild(fb);
+    }
+  </script>
 </body>
 </html>
 
